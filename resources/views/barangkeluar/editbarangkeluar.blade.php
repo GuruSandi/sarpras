@@ -6,6 +6,23 @@
         <div class="card-body">
             <div class="container mt-5">
                 <div class="row">
+                    <div class="col-6">
+                        @if (Session::has('status'))
+                            <div class="pesan pesan-danger d-flex justify-content-between align-items-center position-fixed top-0 end-0"
+                                style="font-size: 14px; z-index: 1050; width: 530px;">
+                                <div class="mr-auto" style="font-weight: bold"> <i class="bi bi-exclamation-circle"
+                                        style="margin-right: 2px"></i> Error: {{ Session::get('status') }}
+                                </div>
+                                <!-- mr-auto untuk memberikan margin kanan otomatis agar teks sejajar dengan tombol close -->
+                                <button type="button" class="close-danger ml-2" data-dismiss="pesan" aria-label="Close">
+                                    <!-- ml-2 untuk memberikan margin kiri -->
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modalPilihBarang">
@@ -34,6 +51,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        
                         <form action="{{ route('updatebarangkeluar', $barangkeluar->id) }}" class="form-group"
                             enctype="multipart/form-data" method="POST">
                             @csrf

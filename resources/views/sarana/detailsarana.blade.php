@@ -20,6 +20,8 @@
                         Aktif
                     @endif
                 </p>
+                <p><strong>Jenis Barang:</strong> {{ $item->jenis_sarpras }}</p>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

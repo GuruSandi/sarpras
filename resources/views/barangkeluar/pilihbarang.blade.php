@@ -11,7 +11,7 @@
                         <tr>
                             <th>No</th>
                             <th>Kode Barang</th>
-                            <th>Nama</th>
+                            <th>Nama Barang</th>
                             <th>Foto</th>
                             <th>Stok</th>
                             <th>Aksi</th>

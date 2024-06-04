@@ -5,6 +5,19 @@
     <div class="card shadow">
         <div class="card-body">
             <div class="container mt-5">
+                @if (Session::has('status'))
+                    <div class="pesan pesan-danger d-flex justify-content-between align-items-center position-fixed top-0 end-0"
+                        style="font-size: 14px; z-index: 1050; width: 530px;">
+                        <div class="mr-auto" style="font-weight: bold"> <i class="bi bi-exclamation-circle"
+                                style="margin-right: 2px"></i> Error: {{ Session::get('status') }}
+                        </div>
+                        <!-- mr-auto untuk memberikan margin kanan otomatis agar teks sejajar dengan tombol close -->
+                        <button type="button" class="close-danger ml-2" data-dismiss="pesan" aria-label="Close">
+                            <!-- ml-2 untuk memberikan margin kiri -->
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
@@ -38,11 +51,12 @@
                             enctype="multipart/form-data" method="POST">
                             @csrf
 
-                            <input type="hidden" id="barang_id_input" name="sarpras_id" value="{{ $peminjaman->sarpras->id }}">
+                            <input type="hidden" id="barang_id_input" name="sarpras_id"
+                                value="{{ $peminjaman->sarpras->id }}">
 
 
                             <label for="tanggal_pinjam" class="form-label">Tanggal Pinjam</label>
-                            <?php $tanggal_pinjam_formatted = date("Y-m-d", strtotime($peminjaman->tanggal_pinjam)); ?>
+                            <?php $tanggal_pinjam_formatted = date('Y-m-d', strtotime($peminjaman->tanggal_pinjam)); ?>
                             <input type="date" class="form-control" required name="tanggal_pinjam"
                                 value="{{ $tanggal_pinjam_formatted }}">
                             <label for="kondisi_pinjam" class="form-label">Kondisi Pinjam</label>
@@ -79,17 +93,22 @@
         });
     </script> --}}
     <script>
-        $(document).ready(function(){
-            $('.pilih-barang').click(function(){
+        $(document).ready(function() {
+            $('.pilih-barang').click(function() {
                 var barang_id = $(this).data('id'); // Mengambil ID barang dari atribut data
-                $('#barang_id_input').val(barang_id); // Mengisi nilai input tersembunyi dengan ID barang yang dipilih
-                
+                $('#barang_id_input').val(
+                barang_id); // Mengisi nilai input tersembunyi dengan ID barang yang dipilih
+
                 // Perbarui konten tabel dengan barang yang dipilih
-                var kode_barang = $(this).closest('tr').find('td:eq(1)').text(); // Ambil kode barang dari baris yang dipilih
-                var nama_barang = $(this).closest('tr').find('td:eq(2)').text(); // Ambil nama barang dari baris yang dipilih
-                var foto_barang = $(this).closest('tr').find('td:eq(3) img').attr('src'); // Ambil foto barang dari baris yang dipilih
-                var stok_barang = $(this).closest('tr').find('td:eq(4)').text(); // Ambil stok barang dari baris yang dipilih
-    
+                var kode_barang = $(this).closest('tr').find('td:eq(1)')
+            .text(); // Ambil kode barang dari baris yang dipilih
+                var nama_barang = $(this).closest('tr').find('td:eq(2)')
+            .text(); // Ambil nama barang dari baris yang dipilih
+                var foto_barang = $(this).closest('tr').find('td:eq(3) img').attr(
+                'src'); // Ambil foto barang dari baris yang dipilih
+                var stok_barang = $(this).closest('tr').find('td:eq(4)')
+            .text(); // Ambil stok barang dari baris yang dipilih
+
                 // Ubah isi dari tabel dengan barang yang dipilih
                 $('#tabelPeminjaman tbody').html(`
                     <tr>
@@ -102,8 +121,8 @@
             });
         });
     </script>
-    
-    
+
+
 
 
 @endsection

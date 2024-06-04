@@ -31,7 +31,7 @@
         <div class="navbar-brand">
             <h5 class=""
                 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 25px; color: #0a0942">
-                APLIKASI SARPRAS SD IT INSAN CERMAT</h5>
+                INVENTARIS SARPRAS SD IT INSAN CERMAT</h5>
         </div>
         <form action="#" class="d-none d-sm-inline-block">
 
@@ -41,13 +41,15 @@
                 <li class="nav-item dropdown">
                     <a href="#" id="dropdownToggle" data-bs-toggle="dropdown"
                         class="nav-icon pe-md-0 text-dark dropdown-toggle-start">
-                        <img src="{{ asset(Auth::user()->foto) }}" class="avatar img-fluid rounded-circle" alt="">
+                        <img src="{{ asset(Auth::user()->foto) }}" class="avatar img-fluid rounded-circle"
+                            alt="">
                         {{-- {{ Auth::user()->nama }} --}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-center rounded" id="dropdownMenu"
                         style="display: none; left: auto; right: 0; width: 240px; padding: 0;">
                         <div class="dropdown-item1 fw-bold" style="background-color: #0a0942; color: white;">
-                            <img src="{{ asset(Auth::user()->foto) }}" class="avatar img-fluid rounded-circle" alt="">
+                            <img src="{{ asset(Auth::user()->foto) }}" class="avatar img-fluid rounded-circle"
+                                alt="">
                             <span style="margin-left: 10px">{{ Auth::user()->nama }}</span>
                         </div>
 
@@ -90,24 +92,19 @@
     </nav>
     <div class="wrapper">
 
-        <aside id="sidebar">
+        <aside id="sidebar" class="expand">
             <div class="d-flex mt-3">
                 <button class="toggle-btn" type="button">
-                    <i class="lni lni-grid-alt"></i>
+                    <i class="bi bi-list"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="{{ route('menu') }}" class="text-white">
-                        <span>Menu</span>
+                        <span>Dashboard</span>
                 </div>
             </div>
             <ul class="sidebar-nav">
 
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+
 
 
                 <li class="sidebar-item">
@@ -231,7 +228,26 @@
     <script src="{{ asset('js/jquery-3.7.0.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
-
+    <script>
+        // Menangani klik tombol close
+        document.addEventListener('DOMContentLoaded', function() {
+            var closeButton = document.querySelector('.pesan .close');
+            closeButton.addEventListener('click', function() {
+                var pesanElement = this.parentNode;
+                pesanElement.parentNode.removeChild(pesanElement);
+            });
+        });
+    </script>
+    <script>
+        // Menangani klik tombol close
+        document.addEventListener('DOMContentLoaded', function() {
+            var closeButton = document.querySelector('.pesan .close-danger');
+            closeButton.addEventListener('click', function() {
+                var pesanElement = this.parentNode;
+                pesanElement.parentNode.removeChild(pesanElement);
+            });
+        });
+    </script>
     <script>
         var dropdownToggle = document.getElementById('dropdownToggle');
         var dropdownMenu = document.getElementById('dropdownMenu');
@@ -249,7 +265,7 @@
     <script>
         new DataTable('#example');
     </script>
-
+   
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>

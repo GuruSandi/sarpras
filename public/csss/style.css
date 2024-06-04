@@ -34,6 +34,20 @@ body {
     min-width: 0;
 
 }
+.avatar .avatar-initial {
+    font-size: 2rem; /* Ukuran ikon */
+    width: 3rem; /* Lebar ikon */
+    height: 3rem; /* Tinggi ikon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+
+.avatar .avatar-initial i {
+    font-size: 2rem; /* Ukuran ikon dalam tag i */
+}
 
 #sidebar {
     width: 70px;
@@ -170,7 +184,7 @@ a.sidebar-link:hover {
 
     #sidebar.expand+.main {
         margin-left: 260px;
-        
+
         /* Sesuaikan dengan lebar sidebar yang diperluas */
     }
 
@@ -202,19 +216,27 @@ a.sidebar-link:hover {
 .navbar-expand .navbar-collapse {
     min-width: 200px;
 }
+
 /* CSS untuk dropdown item */
 .dropdown-item1 {
-    padding: 10px 20px; /* Atur padding sesuai kebutuhan */
-    font-size: 16px; /* Atur ukuran font sesuai kebutuhan */
-    color: #333; /* Warna teks */
-    text-decoration: none; /* Hilangkan garis bawah pada tautan */
-    display: block; /* Agar item dropdown tampil sebagai blok */
+    padding: 10px 20px;
+    /* Atur padding sesuai kebutuhan */
+    font-size: 16px;
+    /* Atur ukuran font sesuai kebutuhan */
+    color: #333;
+    /* Warna teks */
+    text-decoration: none;
+    /* Hilangkan garis bawah pada tautan */
+    display: block;
+    /* Agar item dropdown tampil sebagai blok */
 }
 
 /* Efek hover */
 .dropdown-item1:hover {
-    background-color: #f8f9fa; /* Warna latar belakang ketika dihover */
-    color: #007bff; /* Warna teks ketika dihover */
+    background-color: #f8f9fa;
+    /* Warna latar belakang ketika dihover */
+    color: #007bff;
+    /* Warna teks ketika dihover */
 }
 
 
@@ -223,6 +245,73 @@ a.sidebar-link:hover {
     width: 40px;
 }
 
+/* Styles for the notification */
+.pesan {
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+}
 
+/* Success notification */
+.pesan-success {
+    background-color: #d4edda;
+    /* Warna latar belakang hijau */
+    color: #155724;
+    /* Warna teks hijau gelap */
+    border-color: #c3e6cb;
+    /* Warna border hijau terang */
+}
+
+.pesan-danger {
+    background-color: #edd4d4;
+    /* Warna latar belakang hijau */
+    color: #571515;
+    /* Warna teks hijau gelap */
+    border-color: #e6c3c3;
+    /* Warna border hijau terang */
+}
+
+.close-danger {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: #571515;
+}
+
+/* Close button */
+.close {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: #155724;
+}
+
+/* Hide the notification by default */
+.pesan.hidden {
+    display: none;
+}
+
+.pesan .close span {
+    font-size: 1.7em;
+    /* Atur ukuran ikon close */
+}
+
+.pesan .close-danger span {
+    font-size: 1.7em;
+    /* Atur ukuran ikon close */
+
+}
+
+.pesan .close-danger .bi {
+    font-weight: bold;
+    font-size: 24px;
+
+}
+
+/* Menambahkan sedikit jarak antara ikon dan teks pesan */
+.pesan .mr-auto {
+    margin-right: 10px;
+    /* Atur jarak kanan */
+}
 
 @media (min-width: 768px) {}

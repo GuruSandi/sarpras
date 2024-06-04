@@ -10,7 +10,7 @@
                 <!-- Form Edit -->
                 <form action="{{ route('posteditsarana', $item->id) }}" class="form-group" enctype="multipart/form-data" method="POST">
                     @csrf
-                    <label for="nama_sarpras" class="form-label">Nama</label>
+                    <label for="nama_sarpras" class="form-label">Nama Barang</label>
                     <input type="text" class="form-control" required name="nama_sarpras" id="nama_sarpras" value="{{ $item->nama_sarpras }}">
                     <label for="foto" class="form-label">Foto</label>
                     <input type="file" accept="image/*" class="form-control" name="foto" id="foto">
@@ -22,6 +22,11 @@
                     <select name="status" id="status" class="form-control" required>
                         <option value="aktif" @if ($item->status == 'aktif') selected @endif>Aktif</option>
                         <option value="tidak" @if ($item->status == 'tidak') selected @endif>Tidak Aktif</option>
+                    </select>
+                    <label for="status" class="form-label">Jenis Barang</label>
+                    <select name="jenis_sarpras" id="jenis_sarpras" class="form-control" required>
+                        <option value="sarana"  @if ($item->jenis_sarpras == 'sarana') selected @endif>Sarana</option>
+                        <option value="baranghabis"  @if ($item->jenis_sarpras == 'baranghabis') selected @endif>Barang Habis Pakai</option>
                     </select>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

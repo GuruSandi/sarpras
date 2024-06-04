@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form action="{{ route('posttambahsarana') }}" class="form-group" enctype="multipart/form-data" method="POST">
                     @csrf
-                    <label for="nama_sarpras" class="form-label">Nama</label>
+                    <label for="nama_sarpras" class="form-label">Nama Barang</label>
                     <input type="text" class="form-control" required name="nama_sarpras" id="nama_sarpras">
                     <label for="foto" class="form-label">Foto</label>
                     <input type="file" accept="image/*" class="form-control" required name="foto" id="foto">
@@ -20,6 +20,11 @@
                     <select name="status" id="status" class="form-control" required>
                         <option value="aktif">Aktif</option>
                         <option value="tidak">Tidak Aktif</option>
+                    </select>
+                    <label for="status" class="form-label">Jenis Barang</label>
+                    <select name="jenis_sarpras" id="jenis_sarpras" class="form-control" required>
+                        <option value="sarana">Sarana</option>
+                        <option value="baranghabis">Barang Habis Pakai</option>
                     </select>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

@@ -16,13 +16,13 @@ class BarangKeluarController extends Controller
     public function inputbarangkeluar()
     {
         $barangkeluar = barang_keluar::with('sarpras')->get();
-        $sarpras =  sarpras::where('status', 'aktif')->where('stok', '>', 0)->get();
+        $sarpras =  sarpras::where('status', 'aktif')->where('stok', '>', 0)->where('jenis_sarpras', 'baranghabis')->get();
         return view('barangkeluar.inputbarangkeluar', compact('sarpras', 'barangkeluar'));
     }
     public function pilihbarangkeluar($id)
     {
         $barang = sarpras::findOrFail($id);
-        $sarpras = sarpras::where('status', 'aktif')->where('stok', '>', 0)->get();
+        $sarpras = sarpras::where('status', 'aktif')->where('stok', '>', 0)->where('jenis_sarpras', 'baranghabis')->get();
         $barangkeluar = barang_keluar::all();
         return view('barangkeluar.createbarangkeluar', compact('sarpras', 'barangkeluar', 'barang'))->with('status', 'berhasil memilih data');
     }
@@ -37,7 +37,7 @@ class BarangKeluarController extends Controller
         $sarpras = sarpras::FindOrFail($request->sarpras_id);
         $stok = $sarpras->stok;
 
-        if ($stok < 0) {
+        if ($stok < $request->jumlah) {
             return back()->with('status', 'Maaf jumlah yang Anda masukkan melebihi stok yang ada');
         } else {
             barang_keluar::create([
@@ -55,12 +55,12 @@ class BarangKeluarController extends Controller
 
 
 
-        return redirect()->route('inputbarangkeluar')->with('status', 'Berhasil Menambah data barangkeluar');
+        return redirect()->route('inputbarangkeluar')->with('status', 'Berhasil Menambah data barang keluar');
     }
     public function editbarangkeluar($id)
     {
 
-        $barangBaru = sarpras::where('status', 'aktif')->where('stok', '>', 0)->get();
+        $barangBaru = sarpras::where('status', 'aktif')->where('stok', '>', 0)->where('jenis_sarpras', 'baranghabis')->get();
         $barangkeluar = barang_keluar::findOrFail($id);
         return view('barangkeluar.editbarangkeluar', compact('barangkeluar', 'barangBaru'));
     }
@@ -100,6 +100,9 @@ class BarangKeluarController extends Controller
         } else {
             // Jika sarpras_id tidak diganti, perbarui stok sarpras yang lama
             $stok_baru_sarpras_lama = $stok_lama_sarpras_lama - $request->jumlah;
+            if ($stok_baru_sarpras_lama < 0) {
+                return back()->with('status', 'Maaf, jumlah yang Anda masukkan melebihi stok yang ada');
+            }
         }
 
         // Update barang keluar
@@ -130,12 +133,12 @@ class BarangKeluarController extends Controller
             'stok' => $sarpras->stok + $barangkeluar->jumlah
         ]);
         $barangkeluar->delete();
-        return redirect()->route('inputbarangkeluar')->with('status', 'Berhasil menghapus data barangkeluar');
+        return redirect()->route('inputbarangkeluar')->with('status', 'Berhasil menghapus data barang keluar');
     }
     public function laporanbarangkeluar()
     {
         $barangkeluar = barang_keluar::with('sarpras')->get();
-        
+
         return view('barangkeluar.laporanbarangkeluar', compact('barangkeluar'));
     }
     public function filterkeluar(Request $request)
@@ -152,7 +155,7 @@ class BarangKeluarController extends Controller
         $startDate = date('Y-m-d 00:00:00', strtotime($startDate));
         $endDate = date('Y-m-d 23:59:59', strtotime($endDate));
         $barangkeluar =barang_keluar::whereBetween('tanggal_keluar', [$startDate, $endDate])->with('sarpras')->get();
-       
+
         if ($request->input('action') == 'download_pdf') {
             // Jika pengguna memilih untuk mengunduh PDF, maka lakukan hal tersebut
             $pdf = FacadePdf::loadView('barangkeluar.cetakpdf', compact('barangkeluar', 'startDate', 'endDate'));
@@ -160,7 +163,7 @@ class BarangKeluarController extends Controller
         }elseif($request->input('action') == 'download_excel'){
             $startDate = Carbon::parse($request->input('start_date'));
             $endDate = Carbon::parse($request->input('end_date'));
-        
+
             return Excel::download(new laporanbarangkeluarExport($startDate, $endDate), 'barangkeluar_report.xlsx');
         }
 

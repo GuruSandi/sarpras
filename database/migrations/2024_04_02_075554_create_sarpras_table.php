@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('status',['aktif','tidak']);
             $table->string('foto');
             $table->integer('stok');
-            $table->enum('jenis_sarpras',['sarana','prasarana']);
+            $table->enum('jenis_sarpras',['sarana','prasarana','baranghabis']);
             $table->text('penerima_barang');
             $table->timestamps();
         });

@@ -16,7 +16,7 @@
                     <input type="text" class="form-control" required name="nama" id="nama" value="{{ $item->nama }}">
                     
                     <label for="NIP" class="form-label">NIP</label>
-                    <input type="number" class="form-control" required name="NIP" id="NIP" value="{{ $item->NIP }}">
+                    <input type="text" class="form-control" required name="NIP" id="NIP" value="{{ $item->NIP }}">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" required name="email" id="email" value="{{ $item->email }}">
                     <label for="password" class="form-label">Password</label>

@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <!-- Display Details -->
                 <p><strong>Kode Barang:</strong> {{ $item->sarpras->kode_sarpras }}</p>
-                <p><strong>Nama:</strong> {{ $item->sarpras->nama_sarpras }}</p>
+                <p><strong>Nama Barang:</strong> {{ $item->sarpras->nama_sarpras }}</p>
                 <p><strong>Tanggal keluar:</strong> {{ $item->tanggal_keluar}}</p>
 
                 <p><strong>Jumlah:</strong> {{ $item->jumlah }}</p>

@@ -22,14 +22,14 @@ class PeminjamanController extends Controller
         foreach ($peminjaman as $item) {
             $item->tanggal_pinjam = Carbon::parse($item->tanggal_pinjam)->format('d-m-Y');
         }
-        $sarpras =  sarpras::where('status','aktif')->where('stok', '>', 0)->get();
+        $sarpras =  sarpras::where('status','aktif')->where('stok', '>', 0)->whereIn('jenis_sarpras', ['sarana', 'prasarana'])->get();
         return view('peminjaman.inputpeminjaman', compact('sarpras', 'peminjaman'));
-        
+
     }
     public function pilihbarang($id)
     {
         $barang = sarpras::findOrFail($id);
-        $sarpras = sarpras::where('status','aktif')->where('stok', '>', 0)->get();
+        $sarpras = sarpras::where('status','aktif')->where('stok', '>', 0)->whereIn('jenis_sarpras', ['sarana', 'prasarana'])->get();
         $peminjaman = peminjaman::all();
         return view('peminjaman.createpeminjaman', compact('sarpras', 'peminjaman', 'barang'))->with('status', 'berhasil memilih data');
     }
@@ -45,7 +45,7 @@ class PeminjamanController extends Controller
         $sarpras = sarpras::FindOrFail($request->sarpras_id);
         $stok = $sarpras->stok;
 
-        if ($stok < 0) {
+        if ($stok < $request->jumlah) {
             return back()->with('status', 'Maaf jumlah yang Anda masukkan melebihi stok yang ada');
         } else {
             peminjaman::create([
@@ -70,7 +70,7 @@ class PeminjamanController extends Controller
     public function editpeminjaman($id)
     {
 
-        $barangBaru = sarpras::where('status','aktif')->where('stok', '>', 0)->get();
+        $barangBaru = sarpras::where('status','aktif')->where('stok', '>', 0)->whereIn('jenis_sarpras', ['sarana', 'prasarana'])->get();
         $peminjaman = peminjaman::findOrFail($id);
         return view('peminjaman.editpeminjaman', compact('peminjaman', 'barangBaru'));
     }
@@ -110,8 +110,12 @@ class PeminjamanController extends Controller
                 'stok' => $stok_baru_sarpras_baru
             ]);
         } else {
+
             // Jika sarpras_id tidak diganti, perbarui stok sarpras yang lama
             $stok_baru_sarpras_lama = $stok_lama_sarpras_lama - $request->jumlah;
+            if ($stok_baru_sarpras_lama < 0) {
+                return back()->with('status', 'Maaf, jumlah yang Anda masukkan melebihi stok yang ada');
+            }
         }
 
         // Update barang keluar
@@ -131,7 +135,7 @@ class PeminjamanController extends Controller
 
         return redirect()->route('inputpeminjaman')->with('status', 'Berhasil memperbarui data peminjaman');
     }
-    
+
 
     public function hapuspeminjaman($id)
     {
@@ -166,7 +170,7 @@ class PeminjamanController extends Controller
         $startDate = date('Y-m-d 00:00:00', strtotime($startDate));
         $endDate = date('Y-m-d 23:59:59', strtotime($endDate));
         $peminjaman =peminjaman::whereBetween('tanggal_pinjam', [$startDate, $endDate])->where('status', 'dipinjam')->with('sarpras')->get();
-       
+
         if ($request->input('action') == 'download_pdf') {
             // Jika pengguna memilih untuk mengunduh PDF, maka lakukan hal tersebut
             $pdf = FacadePdf::loadView('peminjaman.cetakpdf', compact('peminjaman', 'startDate', 'endDate'));
@@ -174,7 +178,7 @@ class PeminjamanController extends Controller
         }elseif($request->input('action') == 'download_excel'){
             $startDate = Carbon::parse($request->input('start_date'));
             $endDate = Carbon::parse($request->input('end_date'));
-        
+
             return Excel::download(new laporanpeminjamanExport($startDate, $endDate), 'peminjaman_report.xlsx');
         }
 

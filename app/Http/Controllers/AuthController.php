@@ -38,6 +38,9 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
         $fotoPath = $request->foto->store('img/fotopengguna');
+        if (User::where('email', $request->email)->exists()) {
+            return redirect()->back()->withErrors(['email' => 'Email sudah terdaftar.'])->withInput();
+        }
         User::create([
             'nama' => $request->nama,
             'NIP' => $request->NIP,

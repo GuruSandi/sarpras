@@ -14,7 +14,7 @@ class SaranaController extends Controller
 {
     public function homesarana()
     {
-        $sarana = sarpras::where('jenis_sarpras','sarana')->get();
+        $sarana = sarpras::whereIn('jenis_sarpras',['sarana','baranghabis'])->get();
         return view('sarana.homesarana', compact('sarana'));
     }
     public function tambahsarana()
@@ -28,6 +28,8 @@ class SaranaController extends Controller
             'foto' => 'required|file',
             'stok' => 'required|numeric',
             'penerima_barang' => 'required',
+            'jenis_sarpras' => 'required',
+
         ]);
         sarpras::create([
             'kode_sarpras' => 'KD-'.mt_rand(10000, 99999),
@@ -36,10 +38,11 @@ class SaranaController extends Controller
             'stok' => $request->stok,
             'penerima_barang' => $request->penerima_barang,
             'status' => 'aktif',
-            'jenis_sarpras' => 'sarana',
+            'jenis_sarpras' => $request->jenis_sarpras,
+
         ]);
         
-        return redirect()->route('homesarana')->with('status', 'Berhasil Menambah data sarana');
+        return redirect()->route('homesarana')->with('status', 'Berhasil Menambahkan Data Sarana');
     }
     public function editsarana($id)
     {
@@ -54,6 +57,8 @@ class SaranaController extends Controller
             'stok' => 'required|numeric',
             'penerima_barang' => 'required',
             'status' => 'required',
+            'jenis_sarpras' => 'required',
+
         ]);
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->foto->store('img/sarana');
