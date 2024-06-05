@@ -28,7 +28,7 @@ Route::middleware(['guest'])->group(function () {
 //auth
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
+    Route::get('/dashboard', [MenuController::class, 'menu'])->name('menu');
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::post('/updateprofile', [AuthController::class, 'updateprofile'])->name('updateprofile');
 

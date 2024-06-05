@@ -16,6 +16,18 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <style>
+        .chart-container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+    <style>
         .sidebar-link {
             text-decoration: none;
         }
@@ -265,7 +277,7 @@
     <script>
         new DataTable('#example');
     </script>
-   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
