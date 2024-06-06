@@ -4,7 +4,7 @@
 @section('content')
     <div class="card shadow">
         <div class="card-body">
-            <div class="container mt-5">
+            <div class="container mt-3">
                 @if (Session::has('status'))
                     <div class="pesan pesan-success d-flex justify-content-between align-items-center position-fixed top-0 end-0"
                         style="font-size: 13px; z-index: 1050; width: 410px;">
@@ -19,7 +19,7 @@
                 @endif
                 <div class="row mb-3">
                     <div class="col-12">
-                        <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-sm btn-primary mb-4" data-bs-toggle="modal"
                             data-bs-target="#tambahPenggunaModal">
                             <i class="bi bi-plus-circle"></i> Tambah
                         </button>

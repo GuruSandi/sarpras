@@ -46,11 +46,11 @@ class DatabaseSeeder extends Seeder
             'status'=>'aktif',
             'foto'=>'img/pencil.jpg',
             'stok'=>'50',
-            'jenis_sarpras'=>'sarana',
+            'jenis_sarpras'=>'baranghabis',
             'penerima_barang'=>'siti',
         ]);
         sarpras::create([
-            'kode_sarpras'=>'KD-20323',
+            'kode_sarpras'=>'KD-20324',
             'nama_sarpras'=>'kursi',
             'status'=>'aktif',
             'foto'=>'img/kursii.jpg',

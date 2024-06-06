@@ -9,6 +9,7 @@ class barang_keluar extends Model
 {
     use HasFactory;
     protected $guarded=['1'];
+    
     public function sarpras()
     {
         return $this->belongsTo(sarpras::class);

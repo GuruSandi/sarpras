@@ -48,7 +48,13 @@ body {
 .avatar .avatar-initial i {
     font-size: 2rem; /* Ukuran ikon dalam tag i */
 }
-
+.previewFoto {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* Membuat lingkaran */
+    background-color: #b6b1fa; /* Warna latar belakang */
+    object-fit: cover; /* Memastikan gambar diatur sesuai lingkaran */
+}
 #sidebar {
     width: 70px;
     min-width: 70px;

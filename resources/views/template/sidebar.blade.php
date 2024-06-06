@@ -65,7 +65,7 @@
                             <span style="margin-left: 10px">{{ Auth::user()->nama }}</span>
                         </div>
 
-                        <a href="" class="dropdown-item1 " style="font-size: 14px;">
+                        <a href="{{ route('profile') }}" class="dropdown-item1 " style="font-size: 14px;">
                             <i class="bi bi-person"></i>
                             <span>Profile</span>
                         </a>
@@ -131,24 +131,30 @@
                         <span>Prasarana</span>
                     </a>
                 </li>
-
-
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    <a href="{{ route('sebaransarpras') }}" class="sidebar-link">
+                        <i class="bi bi-diagram-2"></i>
+                        <span>Sebaran Sarpras</span>
+                    </a>
+                </li>
+
+
+                {{-- <li class="sidebar-item">
+                    <a href="{{ route('sebaransarpras') }}" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#sebaransarpras" aria-expanded="false" aria-controls="sebaransarpras">
                         <i class="bi bi-diagram-2"></i>
                         <span>Sebaran Sarpras</span>
                     </a>
                     <ul id="sebaransarpras" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="{{ route('databelumkembali') }}" class="sidebar-link"><i
+                            <a href="{{ route('sebaransarpras') }}" class="sidebar-link"><i
                                     class="bi-clock-history"></i>
                                 Data Belum Kembali</a>
 
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"

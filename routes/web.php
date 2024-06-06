@@ -29,8 +29,10 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [MenuController::class, 'menu'])->name('menu');
-    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
-    Route::post('/updateprofile', [AuthController::class, 'updateprofile'])->name('updateprofile');
+    Route::get('/profile', [MenuController::class, 'profile'])->name('profile');
+    Route::post('/posteditprofile/{user}', [MenuController::class, 'posteditprofile'])->name('posteditprofile');
+    Route::get('/sebaransarpras', [MenuController::class, 'sebaransarpras'])->name('sebaransarpras');
+    Route::get('/filtersebaransarpras', [MenuController::class, 'filtersebaransarpras'])->name('filtersebaransarpras');
 
     //menu sarana
     Route::get('/menusarana', [SaranaController::class, 'homesarana'])->name('homesarana');
