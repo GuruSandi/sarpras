@@ -11,12 +11,12 @@
                             @csrf
                             <div class="row mb-5">
                                 <div class="col-4">
-                                    <label for="start_date" style="font-size: 14px">Start Date</label>
+                                    <label for="start_date" style="font-size: 14px">Tanggal Mulai</label>
                                     <input type="date" name="start_date" class="form-control form-control-sm" required>
 
                                 </div>
                                 <div class="col-4">
-                                    <label for="end_date" style="font-size: 14px">End Date</label>
+                                    <label for="end_date" style="font-size: 14px">Tanggal Akhir</label>
                                     <input type="date" name="end_date" class="form-control form-control-sm" required>
 
                                 </div>
@@ -55,7 +55,7 @@
                                         <td>{{ $item->tanggal_kembali }}</td>
                                         <td>{{ $item->sarpras->kode_sarpras }}</td>
                                         <td>{{ $item->sarpras->nama_sarpras }}</td>
-                                        <td>{{ $item->kondisi_pinjam }}</td>
+                                        <td>{{ $item->kondisi_pinjam }}%</td>
                                         <td>{{ $item->jumlah }}</td>
                                         <td>{{ $item->peminjam }}</td>
                                         <td>{{ $item->status }}</td>

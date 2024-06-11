@@ -49,7 +49,7 @@
                                         <td>{{ $item->tanggal_pinjam }}</td>
                                         <td>{{ $item->sarpras->kode_sarpras }}</td>
                                         <td>{{ $item->sarpras->nama_sarpras }}</td>
-                                        <td>{{ $item->kondisi_pinjam }}</td>
+                                        <td>{{ $item->kondisi_pinjam }}%</td>
                                         <td>{{ $item->jumlah }}</td>
                                         <td>{{ $item->peminjam }}</td>
                                         <td>{{ $item->status }}</td>

@@ -142,7 +142,7 @@
                                     <tr>
                                         <td style="color: #0a0942">{{ $loop->iteration }}</td>
 
-                                        <td style="color: #0a0942">{{ $item->tanggal_keluar }}</td>
+                                        <td style="color: #0a0942">{{ $item->tanggal_keluar  ? \Carbon\Carbon::parse($item->tanggal_pinjam)->format('d-m-Y') : ''}}</td>
                                         <td style="color: #0a0942">{{ $item->sarpras->kode_sarpras }}</td>
                                         <td style="color: #0a0942">{{ $item->sarpras->nama_sarpras }}</td>
                                         <td style="color: #0a0942">{{ $item->jumlah }}</td>

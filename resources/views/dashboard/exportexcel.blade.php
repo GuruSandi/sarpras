@@ -63,6 +63,7 @@
                 <th style=" text-align: center; width:100px;">Tanggal</th>
                 <th style=" text-align: center;">Foto</th>
                 <th style=" width:150px; text-align: center;">Nama Sarpras</th>
+                <th style=" width:150px; text-align: center;">Jumlah</th>
                 <th style=" text-align: center;  width:100px;">Status</th>
                 <th style=" width:150px; text-align: center;">Penerima</th>
             </tr>
@@ -87,6 +88,9 @@
                     </td>
                     <td style=" text-align: center;">
                         {{ $item->sarpras->nama_sarpras }}
+                    </td>
+                    <td style=" text-align: center;">
+                        {{ $item->jumlah }}
                     </td>
                     <td style=" text-align: center;">
                         @if ($item->status == 'dipinjam')

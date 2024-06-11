@@ -52,6 +52,7 @@
                                 <th>Tanggal</th>
                                 <th>Foto</th>
                                 <th>Nama Sarpras</th>
+                                <th>Jumlah</th>
                                 <th>Status</th>
                                 <th>Penerima</th>
                             </tr>
@@ -77,6 +78,9 @@
                                     </td>
                                     <td>
                                         {{ $item->sarpras->nama_sarpras }}
+                                    </td>
+                                    <td>
+                                        {{ $item->jumlah }}
                                     </td>
                                     <td>
                                         @if ($item->status == 'dipinjam')
