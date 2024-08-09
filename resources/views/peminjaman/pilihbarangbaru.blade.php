@@ -13,7 +13,7 @@
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>Foto</th>
-                            <th>Stok</th>
+                            <th>Jumlah Barang</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

@@ -115,15 +115,39 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
-
-
-
-
                 <li class="sidebar-item">
-                    <a href="{{ route('homesarana') }}" class="sidebar-link">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#sarana" aria-expanded="false" aria-controls="sarana">
                         <i class="bi bi-laptop"></i>
                         <span>Sarana</span>
                     </a>
+                    <ul id="sarana" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="{{ route('homesarana') }}" class="sidebar-link">
+                                <i class="bi bi-box-arrow-right"></i>
+
+                                <span>Barang Masuk</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('inputpeminjaman') }}" class="sidebar-link"><i
+                                    class="bi bi-cart-plus"></i>
+                                Peminjaman</a>
+
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('inputpengembalian') }}" class="sidebar-link">
+                                <i class="bi bi-cart-check"></i>
+                                Pengembalian</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('inputbarangkeluar') }}" class="sidebar-link">
+                                <i class="bi bi-box-arrow-left"></i>
+                                Barang Keluar</a>
+                        </li>
+
+
+                    </ul>
                 </li>
                 <li class="sidebar-item">
                     <a href="{{ route('homeprasarana') }}" class="sidebar-link">
@@ -139,69 +163,24 @@
                 </li>
 
 
-                {{-- <li class="sidebar-item">
-                    <a href="{{ route('sebaransarpras') }}" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#sebaransarpras" aria-expanded="false" aria-controls="sebaransarpras">
-                        <i class="bi bi-diagram-2"></i>
-                        <span>Sebaran Sarpras</span>
-                    </a>
-                    <ul id="sebaransarpras" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="{{ route('sebaransarpras') }}" class="sidebar-link"><i
-                                    class="bi-clock-history"></i>
-                                Data Belum Kembali</a>
-
-                        </li>
-
-                    </ul>
-                </li> --}}
+                
 
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#peminjaman" aria-expanded="false" aria-controls="peminjaman">
+                        data-bs-target="#laporan" aria-expanded="false" aria-controls="laporan">
                         <i class="bi bi-cart-plus"></i>
-                        <span>Peminjaman</span>
+                        <span>Laporan</span>
                     </a>
-                    <ul id="peminjaman" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="{{ route('inputpeminjaman') }}" class="sidebar-link"><i
-                                    class="bi bi-pencil-square"></i>
-                                Input Peminjaman</a>
-
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{ route('inputpengembalian') }}" class="sidebar-link"><i
-                                    class="bi bi-box-arrow-up-right"></i>
-                                Input Pengembalian</a>
-
-                        </li>
-
+                    <ul id="laporan" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
                             <a href="{{ route('laporanpeminjaman') }}" class="sidebar-link"><i
                                     class="bi bi-file-earmark-bar-graph"></i>
                                 Laporan Peminjaman</a>
-
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('laporanpengembalian') }}" class="sidebar-link"><i
                                     class="bi bi-file-earmark-text"></i>
                                 Laporan Pengembalian</a>
-
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#barangkeluar" aria-expanded="false" aria-controls="barangkeluar">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Barang Keluar</span>
-                    </a>
-                    <ul id="barangkeluar" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="{{ route('inputbarangkeluar') }}" class="sidebar-link"><i
-                                    class="bi bi-journal-plus"></i>
-                                Input Barang Keluar</a>
-
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('laporanbarangkeluar') }}" class="sidebar-link"><i
@@ -209,9 +188,9 @@
                                 Laporan Barang Keluar</a>
 
                         </li>
-
                     </ul>
                 </li>
+                
                 <li class="sidebar-item">
                     <a href="{{ route('menudatapengguna') }}" class="sidebar-link">
                         <i class="bi bi-person"></i>

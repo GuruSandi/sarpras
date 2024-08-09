@@ -1,5 +1,5 @@
 @extends('template.sidebar')
-@section('title', 'Input Peminjaman')
+@section('title', 'Menu Peminjaman')
 
 @section('content')
     <div class="card shadow">

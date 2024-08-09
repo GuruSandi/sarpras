@@ -2,11 +2,13 @@
 
 namespace App\Exports;
 
+use App\Models\sarpras;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use Maatwebsite\Excel\Concerns\WithDrawings;
+
 class SaranaExport implements FromView, WithDrawings
 {
     protected $sarana;
@@ -17,11 +19,11 @@ class SaranaExport implements FromView, WithDrawings
     }
     public function view(): View
     {
-        return view('sarana.exportsarana', [
-            'sarana' => DB::table('sarpras')
-                ->where('jenis_sarpras', 'sarana')
-                ->get()
-        ]);
+        $sarana = sarpras::where('jenis_sarpras','sarana')
+        ->with('kategori')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        return view('sarana.exportsarana', compact('sarana'));
     }
     public function columnWidths(): array
     {
@@ -56,5 +58,4 @@ class SaranaExport implements FromView, WithDrawings
 
         return $drawing;
     }
-    
 }

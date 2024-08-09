@@ -67,36 +67,44 @@
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
+                <th>Kategori Barang</th>
                 <th>Kode Barang</th>
-                <th>Nama</th>
                 <th>Foto</th>
-                <th>Stok</th>
-                <th>Penerima Barang</th>
+                <th>Nama Barang</th>
+                <th>Merk Barang</th>
+                <th>Spesifikasi Barang</th>
+                <th>Kondisi Barang</th>
+                <th>Jumlah Barang</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($sarana as $index => $item)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}</td>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>
+                    {{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}
+                </td>
+                <td>{{ $item->kategori->nama }}</td>
 
-                    <td>{{ $item->kode_sarpras }}</td>
-                    <td>{{ $item->nama_sarpras }}</td>
-                    <td>
-                        <img src="{{ public_path($item->foto) }}" alt="Foto Sarana" width="100" height="100">
-                    </td>
-                    <td>{{ $item->stok }}</td>
-                    <td>{{ $item->penerima_barang }}</td>
-                    <td>
-                        @if ($item->status == 'tidak')
-                            Tidak Aktif
-                        @elseif ($item->status == 'aktif')
-                            Aktif
-                        @endif
-                    </td>
+                <td>{{ $item->kode_sarpras }}</td>
+                <td>
+                    <img src="{{ public_path($item->foto) }}" alt="Foto Sarana" width="100" height="100">
+                </td>
+                <td>{{ $item->nama_sarpras }}</td>
+                <td>{{ $item->merk_barang }}</td>
+                <td>{{ $item->spesifikasi_barang }}</td>
+                <td>{{ $item->kondisi_barang }}</td>
+                <td>{{ $item->stok }}</td>
+                <td>
+                    @if ($item->status == 'tidak')
+                        Tidak Aktif
+                    @elseif ($item->status == 'aktif')
+                        Aktif
+                    @endif
+                </td>
 
-                </tr>
+            </tr>
                 
             @endforeach
         </tbody>

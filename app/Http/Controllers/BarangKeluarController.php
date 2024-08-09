@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\laporanbarangkeluarExport;
 use App\Models\barang_keluar;
+use App\Models\kategori;
 use App\Models\sarpras;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,13 +17,25 @@ class BarangKeluarController extends Controller
     public function inputbarangkeluar()
     {
         $barangkeluar = barang_keluar::with('sarpras')->get();
-        $sarpras =  sarpras::where('status', 'aktif')->where('stok', '>', 0)->where('jenis_sarpras', 'baranghabis')->get();
+        $kategori = kategori::where('nama', 'Barang Habis Pakai')->pluck('id')->toArray();
+
+        $sarpras =  sarpras::where('status','aktif')
+        ->where('stok', '>', 0)
+        ->where('jenis_sarpras','sarana')
+        ->where('kategori_id', $kategori)
+        ->get();
         return view('barangkeluar.inputbarangkeluar', compact('sarpras', 'barangkeluar'));
     }
     public function pilihbarangkeluar($id)
     {
         $barang = sarpras::findOrFail($id);
-        $sarpras = sarpras::where('status', 'aktif')->where('stok', '>', 0)->where('jenis_sarpras', 'baranghabis')->get();
+        $kategori = kategori::where('nama', 'Barang Habis Pakai')->pluck('id')->toArray();
+
+        $sarpras =  sarpras::where('status','aktif')
+        ->where('stok', '>', 0)
+        ->where('jenis_sarpras','sarana')
+        ->where('kategori_id', $kategori)
+        ->get();
         $barangkeluar = barang_keluar::all();
         return view('barangkeluar.createbarangkeluar', compact('sarpras', 'barangkeluar', 'barang'))->with('status', 'berhasil memilih data');
     }
@@ -60,7 +73,13 @@ class BarangKeluarController extends Controller
     public function editbarangkeluar($id)
     {
 
-        $barangBaru = sarpras::where('status', 'aktif')->where('stok', '>', 0)->where('jenis_sarpras', 'baranghabis')->get();
+        $kategori = kategori::where('nama', 'Barang Habis Pakai')->pluck('id')->toArray();
+
+        $barangBaru =  sarpras::where('status','aktif')
+        ->where('stok', '>', 0)
+        ->where('jenis_sarpras','sarana')
+        ->where('kategori_id', $kategori)
+        ->get();
         $barangkeluar = barang_keluar::findOrFail($id);
         return view('barangkeluar.editbarangkeluar', compact('barangkeluar', 'barangBaru'));
     }

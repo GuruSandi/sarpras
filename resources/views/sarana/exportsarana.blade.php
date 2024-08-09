@@ -60,11 +60,14 @@
             <tr>
                 <th>No</th>
                 <th style=" text-align: center;">Tanggal</th>
+                <th style=" text-align: center;">Kategori Barang</th>
                 <th style=" width:100px; text-align: center;">Kode Barang</th>
-                <th style=" width:150px; text-align: center;">Nama</th>
                 <th style=" text-align: center;">Foto</th>
-                <th style=" text-align: center;">Stok</th>
-                <th style=" width:150px; text-align: center;">Penerima Barang</th>
+                <th style=" width:150px; text-align: center;">Nama Barang</th>
+                <th style=" width:150px; text-align: center;">Merk Barang</th>
+                <th style=" width:150px; text-align: center;">Spesifikasi Barang</th>
+                <th style=" width:150px; text-align: center;">Kondisi Barang</th>
+                <th style=" text-align: center;">Jumlah Barang</th>
                 <th style=" text-align: center;">Status</th>
             </tr>
         </thead>
@@ -73,16 +76,19 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td style=" text-align: center;">
-                        {{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}</td>
+                        {{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}
+                    </td>
+                    <td style=" text-align: center;">{{ $item->kategori->nama }}</td>
 
                     <td style=" text-align: center;">{{ $item->kode_sarpras }}</td>
-                    <td style=" text-align: center;">{{ $item->nama_sarpras }}</td>
-                    <td >
+                    <td style=" text-align: center;">
                         <img src="{{ public_path($item->foto) }}" alt="Foto Sarana" width="100" height="100">
                     </td>
-                    
+                    <td style=" text-align: center;">{{ $item->nama_sarpras }}</td>
+                    <td style=" text-align: center;">{{ $item->merk_barang }}</td>
+                    <td>{{ $item->spesifikasi_barang }}</td>
+                    <td style=" text-align: center;">{{ $item->kondisi_barang }}</td>
                     <td style=" text-align: center;">{{ $item->stok }}</td>
-                    <td style=" text-align: center;">{{ $item->penerima_barang }}</td>
                     <td style=" text-align: center;">
                         @if ($item->status == 'tidak')
                             Tidak Aktif

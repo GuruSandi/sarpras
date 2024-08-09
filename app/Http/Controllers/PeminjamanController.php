@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\laporanpeminjamanExport;
+use App\Models\kategori;
 use App\Models\peminjaman;
 use App\Models\sarpras;
 use Illuminate\Http\Request;
@@ -22,14 +23,27 @@ class PeminjamanController extends Controller
         foreach ($peminjaman as $item) {
             $item->tanggal_pinjam = Carbon::parse($item->tanggal_pinjam)->format('d-m-Y');
         }
-        $sarpras =  sarpras::where('status','aktif')->where('stok', '>', 0)->whereIn('jenis_sarpras', ['sarana', 'prasarana'])->get();
+        $kategori = kategori::where('nama', 'Barang Habis Pakai')->pluck('id')->toArray();
+
+        $sarpras =  sarpras::where('status','aktif')
+        ->where('stok', '>', 0)
+        ->where('jenis_sarpras','sarana')
+        ->whereNotIn('kategori_id', $kategori)
+        ->get();
+
         return view('peminjaman.inputpeminjaman', compact('sarpras', 'peminjaman'));
 
     }
     public function pilihbarang($id)
     {
         $barang = sarpras::findOrFail($id);
-        $sarpras = sarpras::where('status','aktif')->where('stok', '>', 0)->whereIn('jenis_sarpras', ['sarana', 'prasarana'])->get();
+        $kategori = kategori::where('nama', 'Barang Habis Pakai')->pluck('id')->toArray();
+
+        $sarpras =  sarpras::where('status','aktif')
+        ->where('stok', '>', 0)
+        ->where('jenis_sarpras','sarana')
+        ->whereNotIn('kategori_id', $kategori)
+        ->get();
         $peminjaman = peminjaman::all();
         return view('peminjaman.createpeminjaman', compact('sarpras', 'peminjaman', 'barang'))->with('status', 'berhasil memilih data');
     }
@@ -69,8 +83,13 @@ class PeminjamanController extends Controller
     }
     public function editpeminjaman($id)
     {
+        $kategori = kategori::where('nama', 'Barang Habis Pakai')->pluck('id')->toArray();
 
-        $barangBaru = sarpras::where('status','aktif')->where('stok', '>', 0)->whereIn('jenis_sarpras', ['sarana', 'prasarana'])->get();
+        $barangBaru =  sarpras::where('status','aktif')
+        ->where('stok', '>', 0)
+        ->where('jenis_sarpras','sarana')
+        ->whereNotIn('kategori_id', $kategori)
+        ->get();
         $peminjaman = peminjaman::findOrFail($id);
         return view('peminjaman.editpeminjaman', compact('peminjaman', 'barangBaru'));
     }

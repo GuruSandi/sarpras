@@ -25,6 +25,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(sarpras::class);
     }
+    public function kategori()
+    {
+        return $this->belongsTo(kategori::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

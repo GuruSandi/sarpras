@@ -31,7 +31,7 @@
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
                                     <th>Foto</th>
-                                    <th>Stok</th>
+                                    <th>Jumlah Barang</th>
                                 </tr>
                             </thead>
                             <tbody>

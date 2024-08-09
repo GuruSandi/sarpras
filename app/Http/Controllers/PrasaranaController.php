@@ -48,7 +48,7 @@ class PrasaranaController extends Controller
     {
         $data =  $request->validate([
             'nama_sarpras' => 'required',
-            'foto' => 'file',
+            'foto' => 'file|image',
             'stok' => 'required|numeric',
             'penerima_barang' => 'required',
             'status' => 'required',

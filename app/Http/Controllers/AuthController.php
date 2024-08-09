@@ -93,7 +93,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('login')->with('status', 'Berhasil Logout');
+        return redirect()->route('login');
     }
     public function postlogin(Request $request)
     {

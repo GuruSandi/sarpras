@@ -1,5 +1,5 @@
 @extends('template.sidebar')
-@section('title', 'Input Pengembalian')
+@section('title', 'Menu Pengembalian')
 
 @section('content')
     <div class="card shadow">
@@ -76,7 +76,7 @@
                                         <td>{{ $item->tanggal_pinjam }}</td>
                                         <td>{{ $item->sarpras->kode_sarpras }}</td>
                                         <td>{{ $item->sarpras->nama_sarpras }}</td>
-                                        <td>{{ $item->kondisi_pinjam }}%</td>
+                                        <td>{{ $item->kondisi_pinjam }}</td>
                                         <td>{{ $item->jumlah }}</td>
                                         <td>{{ $item->peminjam }}</td>
                                         <td>{{ $item->status }}</td>

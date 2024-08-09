@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\SaranaExport;
+use App\Models\kategori;
 use App\Models\sarpras;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,8 +15,13 @@ class SaranaController extends Controller
 {
     public function homesarana()
     {
-        $sarana = sarpras::whereIn('jenis_sarpras',['sarana','baranghabis'])->get();
-        return view('sarana.homesarana', compact('sarana'));
+        $sarana = sarpras::where('jenis_sarpras','sarana')
+        ->with('kategori')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        $data = kategori::all();
+        $kode = 'KD-'.mt_rand(10000, 99999);
+        return view('sarana.homesarana', compact('sarana','data','kode'));
     }
     public function tambahsarana()
     {
@@ -24,21 +30,27 @@ class SaranaController extends Controller
     public function posttambahsarana(Request $request)
     {
         $request->validate([
+            'kategori_id' => 'required',
+            'kode_sarpras' => 'required',
             'nama_sarpras' => 'required',
+            'merk_barang' => 'required',
+            'spesifikasi_barang' => 'required',
+            'kondisi_barang' => 'required',
             'foto' => 'required|file',
             'stok' => 'required|numeric',
-            'penerima_barang' => 'required',
-            'jenis_sarpras' => 'required',
 
         ]);
         sarpras::create([
-            'kode_sarpras' => 'KD-'.mt_rand(10000, 99999),
+            'kode_sarpras' => $request->kode_sarpras,
+            'kategori_id' => $request->kategori_id,
             'nama_sarpras' => $request->nama_sarpras,
+            'merk_barang' => $request->merk_barang,
+            'spesifikasi_barang' => $request->spesifikasi_barang,
+            'kondisi_barang' => $request->kondisi_barang,
             'foto' => $request->foto->store('img/sarana'),
             'stok' => $request->stok,
-            'penerima_barang' => $request->penerima_barang,
             'status' => 'aktif',
-            'jenis_sarpras' => $request->jenis_sarpras,
+            'jenis_sarpras' => 'sarana',
 
         ]);
         
@@ -51,15 +63,17 @@ class SaranaController extends Controller
     }
     public function posteditsarana(Request $request, sarpras $sarpras)
     {
-        $data =  $request->validate([
+        $data = $request->validate([
+            'kategori_id' => 'required',
             'nama_sarpras' => 'required',
-            'foto' => 'file',
+            'merk_barang' => 'required',
+            'spesifikasi_barang' => 'required',
+            'kondisi_barang' => 'required',
+            'foto' => 'file|image',
             'stok' => 'required|numeric',
-            'penerima_barang' => 'required',
             'status' => 'required',
-            'jenis_sarpras' => 'required',
-
         ]);
+        // dd($data);
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->foto->store('img/sarana');
         } else {
@@ -91,7 +105,10 @@ class SaranaController extends Controller
     public function cetakpdf()
     {
         
-        $sarana = sarpras::where('jenis_sarpras','sarana')->get();
+        $sarana = sarpras::where('jenis_sarpras','sarana')
+        ->with('kategori')
+        ->orderBy('created_at', 'desc')
+        ->get();
         $pdf= FacadePdf::loadView('sarana.cetakpdf', compact('sarana'));
         
         return $pdf->download('data_sarana.pdf');

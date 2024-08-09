@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('sarpras', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kategori_id')->constrained()->nullable()->onDelete('cascade');
             $table->string('kode_sarpras');
-            $table->string('nama_sarpras');
-            $table->enum('status',['aktif','tidak']);
+            $table->text('nama_sarpras');
+            $table->text('merk_barang')->nullable();
+            $table->text('spesifikasi_barang')->nullable();
+            $table->text('kondisi_barang')->nullable();
+            $table->enum('status',['aktif','tidak'])->nullable();
             $table->string('foto');
-            $table->integer('stok');
-            $table->enum('jenis_sarpras',['sarana','prasarana','baranghabis']);
-            $table->text('penerima_barang');
+            $table->integer('stok')->nullable();
+            $table->enum('jenis_sarpras',['sarana','prasarana']);
+            // $table->text('penerima_barang')->nullable();
             $table->timestamps();
         });
     }

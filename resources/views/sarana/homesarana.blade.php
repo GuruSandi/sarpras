@@ -1,5 +1,5 @@
 @extends('template.sidebar')
-@section('title', 'Menu Sarana')
+@section('title', 'Menu Barang Masuk')
 
 @section('content')
     <div class="card shadow">
@@ -36,15 +36,17 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered" id="example">
+                <table class="table table-bordered" id="example" style="font-size: 12px">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Kode Barang</th>
-                            <th>Nama Barang</th>
                             <th>Foto</th>
-                            <th>Stok</th>
-                            <th>Penerima Barang</th>
+                            <th>Nama Barang</th>
+                            <th>Merk Barang</th>
+                            <th>Spesifikasi Barang</th>
+                            <th>Kondisi Barang</th>
+                            <th>Jumlah Barang</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -54,12 +56,14 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->kode_sarpras }}</td>
-                                <td>{{ $item->nama_sarpras }}</td>
                                 <td>
                                     <img src="{{ asset($item->foto) }}" alt="" width="100" height="100">
                                 </td>
+                                <td>{{ $item->nama_sarpras }}</td>
+                                <td>{{ $item->merk_barang }}</td>
+                                <td>{{ $item->spesifikasi_barang }}</td>
+                                <td>{{ $item->kondisi_barang }}</td>
                                 <td>{{ $item->stok }}</td>
-                                <td>{{ $item->penerima_barang }}</td>
                                 <td>
                                     @if ($item->status == 'tidak')
                                         Tidak Aktif

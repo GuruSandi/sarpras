@@ -18,6 +18,10 @@ class sarpras extends Model
     {
         return $this->hasMany(barang_keluar::class, 'sarpras_id');
     }
+    public function kategori()
+    {
+        return $this->belongsTo(kategori::class);
+    }
     public function user()
     {
     return $this->belongsTo(User::class);
