@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/posteditprasarana/{sarpras}', [PrasaranaController::class, 'posteditprasarana'])->name('posteditprasarana');
     Route::get('/hapusprasarana/{sarpras}', [PrasaranaController::class, 'hapusprasarana'])->name('hapusprasarana');
     Route::get('/detailprasarana/{sarpras}', [PrasaranaController::class, 'detailprasarana'])->name('detailprasarana');
-    Route::get('/exportDataPrasarana', [PrasaranaController::class, 'exportDataPrasarana'])->name('exportDataPrasarana');
+    Route::post('/exportDataPrasarana', [PrasaranaController::class, 'exportDataPrasarana'])->name('exportDataPrasarana');
     Route::get('/cetak-pdf', [PrasaranaController::class, 'cetakpdf'])->name('cetak-pdf');
 
     //input peminjaman

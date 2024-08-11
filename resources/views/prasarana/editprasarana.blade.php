@@ -1,72 +1,3 @@
-<!-- Modal Form Edit -->
-{{-- <div class="modal fade" id="editModal{{$item->id}}" tabindex="-1" aria-labelledby="editModal{{$item->id}}Label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModal{{$item->id}}Label">Edit Data Prasarana</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Form Edit -->
-                <form action="{{ route('posteditprasarana', $item->id) }}" class="form-group" enctype="multipart/form-data" method="POST">
-                    @csrf
-                    <label for="nama_sarpras" class="form-label">Nama</label>
-                    <input type="text" class="form-control" required name="nama_sarpras" id="nama_sarpras" value="{{ $item->nama_sarpras }}">
-                    <label for="foto" class="form-label">Foto</label>
-                    <input type="file" accept="image/*" class="form-control" name="foto" id="foto">
-                    <label for="stok" class="form-label">Stok</label>
-                    <input type="number" class="form-control" required name="stok" id="stok" value="{{ $item->stok }}">
-                    <label for="penerima_barang" class="form-label">Penerima Barang</label>
-                    <input type="text" class="form-control" required name="penerima_barang" id="penerima_barang" value="{{ $item->penerima_barang }}">
-                    <label for="status" class="form-label">Status</label>
-                    <select name="status" id="status" class="form-control" required>
-                        <option value="aktif" @if ($item->status == 'aktif') selected @endif>Aktif</option>
-                        <option value="tidak" @if ($item->status == 'tidak') selected @endif>Tidak Aktif</option>
-                    </select>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-
-
-
-
-
-{{-- @extends('template.sidebar')
-@section('title', 'Edit Data Prasarana')
-
-@section('content')
-
-    <div class="container mt-5 mb-5">
-        <div class="card mx-auto p-5 col-md-5 shadow">
-            <h4 class="text-center mb-5 fw-bold">Edit Data Prasarana</h4>
-            <form action="{{ route('posteditprasarana', $sarpras->id) }}" class="form-group" enctype="multipart/form-data" method="POST">
-                @csrf
-                <label for="">Nama</label>
-                <input type="text" class="form-control" required name="nama_sarpras" value="{{  $sarpras->nama_sarpras }}">
-                <label for="">Foto</label>
-                <input type="file" accept="img/sarana/*" class="form-control"  name="foto" value="{{  $sarpras->foto }}" >
-                <label for="">Stok</label>
-                <input type="number" class="form-control" required name="stok" value="{{  $sarpras->stok }}">
-                <label for="">Penerima Barang</label>
-                <input type="text" class="form-control" required name="penerima_barang" value="{{  $sarpras->penerima_barang }}">
-                <label for="">Status</label>
-                <select name="status" id="" class="form-control" required >
-                    <option value="aktif" @if ($sarpras->status == 'aktif') selected @endif>Aktif</option>
-                    <option value="tidak" @if ($sarpras->status == 'tidak') selected @endif>Tidak Aktif</option>
-                </select>
-                <button class="btn btn-primary w-100 mt-2">Simpan</button>
-            </form>
-        </div>
-    </div>
-
-@endsection --}}
 
 <!-- Modal Form Edit -->
 <div class="modal fade" id="editModal{{ $item->id }}" tabindex="-1" aria-labelledby="editModal{{ $item->id }}Label"
@@ -108,20 +39,10 @@
                             Tidak dipilih
                         @endif
                     </p>
-                    {{-- <select name="jenis_prasarana" id="jenis_prasarana_edit" class="form-control">
-                        <option value="">-- Pilih Jenis --</option>
-                        <option value="gedung" {{ $item->jenis_prasarana == 'gedung' ? 'selected' : '' }}>Gedung
-                        </option>
-                        <option value="laboratorium" {{ $item->jenis_prasarana == 'laboratorium' ? 'selected' : '' }}>
-                            Laboratorium</option>
-                        <option value="perpustakaan" {{ $item->jenis_prasarana == 'perpustakaan' ? 'selected' : '' }}>
-                            Perpustakaan</option>
-                        <option value="saranaolahraga"
-                            {{ $item->jenis_prasarana == 'saranaolahraga' ? 'selected' : '' }}>Sarana Olahraga</option>
-                    </select> --}}
+                    
 
                     <!-- Conditional Fields -->
-                    <div class="form-group" id="atribut-gedung"
+                    <div class="form-group" id="atribut-gedung-edit"
                         style="{{ $item->jenis_prasarana == 'gedung' ? 'display: block;' : 'display: none;' }}">
                         <div class="row mt-1">
                             <div class="col-4">
@@ -154,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="atribut-laboratorium"
+                    <div class="form-group" id="atribut-laboratorium-edit"
                         style="{{ $item->jenis_prasarana == 'laboratorium' ? 'display: block;' : 'display: none;' }}">
                         <div class="row mt-1">
                             <div class="col-6">
@@ -178,7 +99,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="atribut-perpustakaan"
+                    <div class="form-group" id="atribut-perpustakaan-edit"
                         style="{{ $item->jenis_prasarana == 'perpustakaan' ? 'display: block;' : 'display: none;' }}">
                         <div class="row mt-1">
                             <div class="col-6">
@@ -200,7 +121,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="atribut-sarana-olahraga"
+                    <div class="form-group" id="atribut-sarana-olahraga-edit"
                         style="{{ $item->jenis_prasarana == 'saranaolahraga' ? 'display: block;' : 'display: none;' }}">
                         <div class="row mt-1">
                             <div class="col-4">
@@ -250,7 +171,7 @@
                                 id="foto">
                         </div>
                     </div>
-                    <div class="form-group" id="atribut-penggunaan"
+                    <div class="form-group" id="atribut-penggunaan-edit"
                         style="{{ $item->jenis_prasarana ? 'display: none;' : 'display: block;' }}">
                         <div class="row mt-1">
                             <div class="col-4">
@@ -287,15 +208,17 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const jenisPrasaranaEdit = document.getElementById('jenis_prasarana_edit');
-        const atributGedung = document.getElementById('atribut-gedung');
-        const atributLaboratorium = document.getElementById('atribut-laboratorium');
-        const atributPerpustakaan = document.getElementById('atribut-perpustakaan');
-        const atributSaranaOlahraga = document.getElementById('atribut-sarana-olahraga');
-        const atributPenggunaan = document.getElementById('atribut-penggunaan');
+        const atributGedung = document.getElementById('atribut-gedung-edit');
+        const atributLaboratorium = document.getElementById('atribut-laboratorium-edit');
+        const atributPerpustakaan = document.getElementById('atribut-perpustakaan-edit');
+        const atributSaranaOlahraga = document.getElementById('atribut-sarana-olahraga-edit');
+        const atributPenggunaan = document.getElementById('atribut-penggunaan-edit');
 
         jenisPrasaranaEdit.addEventListener('change', function() {
             const selectedValue = this.value;

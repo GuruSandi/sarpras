@@ -16,7 +16,9 @@ class PrasaranaController extends Controller
     {
         $kode = 'PR-' . mt_rand(10000, 99999);
 
-        $prasarana = sarpras::where('jenis_sarpras', 'prasarana')->get();
+        $prasarana = sarpras::where('jenis_sarpras', 'prasarana')
+        ->orderBy('created_at', 'desc')
+        ->get();
         return view('prasarana.homeprasarana', compact('prasarana', 'kode'));
     }
     public function tambahprasarana()
@@ -104,7 +106,6 @@ class PrasaranaController extends Controller
             'kode_sarpras' => 'required',
             'nama_sarpras' => 'required',
             'foto' => 'nullable|file|image', // Validasi foto sebagai gambar jika ada
-            'jenis_prasarana' => 'nullable',
             'jumlah' => 'nullable',
             'jumlahruang' => 'nullable',
             'jumlah_ruang_kelas' => 'nullable',
@@ -127,9 +128,8 @@ class PrasaranaController extends Controller
             'fungsi_prasarana' => 'nullable',
             'status' => 'nullable',
             'kapasitas_penggunaan' => 'nullable',
-            'jenis_sarpras' => 'required',
         ]);
-        dd($request->all());
+        // dd($request->all());
 
         // Cari data prasarana yang akan diupdate
         $prasarana = sarpras::findOrFail($id);
@@ -207,11 +207,16 @@ class PrasaranaController extends Controller
 
         return redirect()->route('homeprasarana')->with('status', 'Berhasil Menghapus data prasarana');
     }
-    public function exportDataprasarana()
+    public function exportDataprasarana1()
     {
         $sheet = new Worksheet();
         $export = new PrasaranaExport($sheet);
         return Excel::download($export, 'Data_prasarana.xlsx');
+    }
+    public function exportDataprasarana(Request $request)
+    {
+        $prasarana = $request->input('jenis_prasarana');
+        return Excel::download(new PrasaranaExport($prasarana), 'prasarana.xlsx');
     }
     public function cetakpdf()
     {

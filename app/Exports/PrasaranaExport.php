@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Exports;
+
+use App\Models\sarpras;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -17,10 +19,15 @@ class PrasaranaExport implements FromView, WithDrawings
     }
     public function view(): View
     {
+        $jenisPrasarana = $this->prasarana
+            ? sarpras::where('jenis_prasarana', $this->prasarana)->get()
+            : sarpras::whereNull('jenis_prasarana')
+            ->where('jenis_sarpras', 'prasarana')
+            ->get();
+
+            // dd($jenisPrasarana);
         return view('prasarana.exportprasarana', [
-            'prasarana' => DB::table('sarpras')
-                ->where('jenis_sarpras', 'prasarana')
-                ->get()
+            'prasarana' => $jenisPrasarana
         ]);
     }
     public function columnWidths(): array
@@ -41,19 +48,30 @@ class PrasaranaExport implements FromView, WithDrawings
     {
         $drawings = [];
 
-        // Logika untuk menambahkan gambar ke dalam ekspor
-        foreach ($this->prasarana as $index => $item) {
-            $drawings[] = $this->drawingsForItem($item->foto, 'E' . ($index + 2));
-        }
+        // Ambil data berdasarkan jenis prasarana
+        $items = $this->prasarana
+            ? sarpras::where('jenis_prasarana', $this->prasarana)->get()
+            : sarpras::whereNull('jenis_prasarana')
+            ->where('jenis_sarpras', 'prasarana')->get();
+
+        // foreach ($items as $index => $item) {
+        //     if ($item->foto) {
+        //         $drawings[] = $this->drawingsForItem($item->foto, 'E' . ($index + 2));
+        //     }
+        // }
 
         return $drawings;
     }
+
     protected function drawingsForItem($imagePath, $coordinate)
     {
         $drawing = new Drawing();
         $drawing->setPath(public_path($imagePath));
         $drawing->setCoordinates($coordinate);
+        $drawing->setWidth(100); // set width
+        $drawing->setHeight(100); // set height
 
         return $drawing;
     }
+
 }

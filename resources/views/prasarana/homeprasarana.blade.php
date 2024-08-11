@@ -11,7 +11,8 @@
                         @if (Session::has('status'))
                             <div class="pesan pesan-success d-flex justify-content-between align-items-center position-fixed top-0 end-0"
                                 style="font-size: 13px; z-index: 1050; width: 300px;">
-                                <div class="mr-auto" style="font-weight: bold"> <i class="bi bi-check-circle"></i> Success: {{ Session::get('status') }}</div>
+                                <div class="mr-auto" style="font-weight: bold"> <i class="bi bi-check-circle"></i> Success:
+                                    {{ Session::get('status') }}</div>
                                 <!-- mr-auto untuk memberikan margin kanan otomatis agar teks sejajar dengan tombol close -->
                                 <button type="button" class="close ml-2" data-dismiss="pesan" aria-label="Close">
                                     <!-- ml-2 untuk memberikan margin kiri -->
@@ -29,10 +30,17 @@
                         </button>
                     </div>
                     <div class="col-3">
-                        <a href="{{ route('cetak-pdf') }}" class="btn btn-sm btn-danger"> <i class="bi bi-file-pdf"></i> Cetak PDF</a>
-                        <a href="{{ route('exportDataPrasarana') }}" class="btn btn-sm btn-success"> <i
-                            class="bi bi-file-excel"></i> Export Excel</a>
-        
+                        {{-- <a href="{{ route('cetak-pdf') }}" class="btn btn-sm btn-danger"> <i class="bi bi-file-pdf"></i>
+                            Cetak PDF</a> --}}
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
+                                data-bs-target="#ExportModal">
+                                <i class="bi bi-file-pdf"></i> Export Excel
+                            </button>
+                        </div>
+
+
+                        @include('prasarana.exportmodal')
                     </div>
                 </div>
                 <table class="table table-bordered" id="example" style="font-size: 9px">
@@ -60,7 +68,19 @@
                                 <td>
                                     <img src="{{ asset($item->foto) }}" alt="" width="100" height="100">
                                 </td>
-                                <td>{{ $item->jenis_prasarana }}</td>
+                                <td>
+                                    @if ($item->jenis_prasarana == 'gedung')
+                                        Gedung
+                                    @elseif($item->jenis_prasarana == 'laboratorium')
+                                        Laboratorium
+                                    @elseif($item->jenis_prasarana == 'perpustakaan')
+                                        Perpustakaan
+                                    @elseif($item->jenis_prasarana == 'saranaolahraga')
+                                        Sarana Olahraga
+                                    @else
+                                        Tidak dipilih
+                                    @endif
+                                </td>
                                 <td>{{ $item->kondisi_barang }}</td>
                                 <td>{{ $item->tahun_pembangunan }}</td>
                                 <td>{{ $item->sumber_dana }}</td>
@@ -88,7 +108,7 @@
                                             data-bs-target="#hapusModal{{ $item->id }}">
                                             <i class="bi bi-trash " style="color: white"></i>
                                         </button>
-                                        
+
                                     </div>
                                 </td>
                             </tr>
@@ -96,12 +116,12 @@
                             @include('prasarana.hapusprasarana')
                             @include('prasarana.detailprasarana')
                         @endforeach
-        
+
                     </tbody>
                 </table>
             </div>
-            </div>
         </div>
+    </div>
     </div>
     @include('prasarana.tambahprasarana')
 
