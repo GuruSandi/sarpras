@@ -184,7 +184,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('laporanbarangkeluar') }}" class="sidebar-link"><i
-                                    class="bi bi bi-file-earmark-text"></i>
+                                    class="bi bi-file-earmark-minus"></i>
                                 Laporan Barang Keluar</a>
 
                         </li>

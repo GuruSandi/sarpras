@@ -1,4 +1,4 @@
-<div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1"
+{{-- <div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1"
     aria-labelledby="detailModal{{ $item->id }}Label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -26,112 +26,161 @@
             </div>
         </div>
     </div>
+</div> --}}
+<!-- Modal Detail Prasarana -->
+<div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1"
+    aria-labelledby="detailModal{{ $item->id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModal{{ $item->id }}Label">Detail Prasarana</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Display Prasarana Details -->
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Kode Prasarana:</h6>
+                        <p>{{ $item->kode_sarpras }}</p>
+                        <h6>Jenis Prasarana:</h6>
+                        <p>
+                            @if ($item->jenis_prasarana)
+                                {{ ucfirst($item->jenis_prasarana) }}
+                            @else
+                                Tidak ada
+                            @endif
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <h6>Nama Prasarana:</h6>
+                        <p>{{ $item->nama_sarpras }}</p>
+                        <h6>Kondisi Bangunan:</h6>
+                        <p>{{ $item->kondisi_barang }}</p>
+                    </div>
+                </div>
+
+                @if ($item->jenis_prasarana == 'gedung')
+                    <div class="row">
+                        <div class="col-4">
+                            <h6>Jumlah Lantai:</h6>
+                            <p>{{ $item->jumlahruang }}</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>Jumlah Ruang Kelas:</h6>
+                            <p>{{ $item->jumlah_ruang_kelas }}</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>Kapasitas Ruang:</h6>
+                            <p>{{ $item->kapasitas_ruang }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Fasilitas Listrik:</h6>
+                            <p>{{ $item->fasilitasruang }}</p>
+                        </div>
+                        <div class="col-6">
+                            <h6>Sanitasi:</h6>
+                            <p>{{ $item->sanitasi }}</p>
+                        </div>
+                    </div>
+                @elseif($item->jenis_prasarana == 'laboratorium')
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Jenis Laboratorium:</h6>
+                            <p>{{ $item->jenis_laboratorium }}</p>
+                        </div>
+                        <div class="col-6">
+                            <h6>Peralatan yang Tersedia:</h6>
+                            <p>{{ $item->peralatan_tersedia }}</p>
+                        </div>
+                    </div>
+                @elseif($item->jenis_prasarana == 'perpustakaan')
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Jumlah Buku:</h6>
+                            <p>{{ $item->jumlah }}</p>
+                            <h6>Jenis Koleksi:</h6>
+                            <p>{{ $item->jenis_koleksi }}</p>
+                        </div>
+                        <div class="col-6">
+                            <h6>Fasilitas Komputer:</h6>
+                            <p>{{ $item->fasilitas }}</p>
+                            <h6>Luas Ruang Baca:</h6>
+                            <p>{{ $item->luas_ruang }} m²</p>
+                        </div>
+                    </div>
+                @elseif($item->jenis_prasarana == 'saranaolahraga')
+                    <div class="row">
+                        <div class="col-4">
+                            <h6>Jenis Lapangan:</h6>
+                            <p>{{ $item->jenis_ruangan }}</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>Ukuran Lapangan:</h6>
+                            <p>{{ $item->ukuran_lapangan }}</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>Kondisi Lapangan:</h6>
+                            <p>{{ $item->kondisi_lapangan }}</p>
+                        </div>
+                    </div>
+                @endif
+
+                @if (empty($item->jenis_prasarana) || is_null($item->jenis_prasarana))
+                    <div class="row">
+                        <div class="col-4">
+                            <h6>Fungsi Prasarana:</h6>
+                            <p>{{ $item->fungsi_prasarana ?? 'Tidak Diketahui' }}</p>
+
+                        </div>
+                        <div class="col-4">
+                            <h6>Status Penggunaan:</h6>
+                            <p>
+                                @if ($item->status == 'tidak')
+                                    Tidak Aktif
+                                @elseif ($item->status == 'aktif')
+                                    Aktif
+                                @elseif ($item->status == 'diperbaiki')
+                                    Sedang diperbaiki
+                                @endif
+                            </p>
+                        </div>
+                        <div class="col-4">
+                            <h6>Kapasitas Penggunaan:</h6>
+                            <p>{{ $item->kapasitas_penggunaan ?? 'Tidak Diketahui' }}</p>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="row">
+                    <div class="col-4">
+                        <h6>Tahun Pembangunan:</h6>
+                        <p>{{ $item->tahun_pembangunan }}</p>
+                    </div>
+                    <div class="col-4">
+                        <h6>Sumber Dana:</h6>
+                        <p>{{ $item->sumber_dana }}</p>
+                    </div>
+                    <div class="col-4">
+                        <h6>Luas Bangunan:</h6>
+                        <p>{{ $item->luas_bangunan }} m²</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Status Kepemilikan:</h6>
+                        <p>{{ $item->status_kepemilikan }}</p>
+                    </div>
+                    <div class="col-6">
+                        <h6>Foto:</h6>
+                        <img src="{{ asset($item->foto) }}" width="100" height="100" alt="Foto Prasarana">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-{{-- @extends('template.sidebar')
-@section('title', 'Detail Data Prasarana')
-
-@section('content')
-
-    <table class="table ">
-        <thead>
-            <tr>
-                <th class="mb-3 p-3 text-white" style="background-color: #0f163c">Detail Sarana</th>
-                <th class="mb-3 p-3 text-white" style="background-color: #0f163c">
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="mb-3 p-3">Kode Barang</td>
-                <td class="mb-3 p-3">{{ $sarpras->kode_sarpras }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Nama</td>
-                <td class="mb-3 p-3">{{ $sarpras->nama_sarpras }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Foto</td>
-                <td class="mb-3 p-3">
-                    <img src="{{ asset($sarpras->foto) }}" alt="" width="100" height="100">
-                </td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Stok</td>
-                <td class="mb-3 p-3">{{ $sarpras->stok }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Penerima Barang</td>
-                <td class="mb-3 p-3">{{ $sarpras->penerima_barang }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Status</td>
-                <td class="mb-3 p-3">
-                    @if ($sarpras->status == 'tidak')
-                        Tidak Aktif
-                    @elseif ($sarpras->status == 'aktif')
-                        Aktif
-                    @endif
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-@endsection --}}
-
-
-
-
-{{-- @extends('template.sidebar')
-@section('title', 'Detail Data Prasarana')
-
-@section('content')
-
-    <table class="table ">
-        <thead>
-            <tr>
-                <th class="mb-3 p-3 text-white" style="background-color: #0f163c">Detail Prasarana</th>
-                <th class="mb-3 p-3 text-white" style="background-color: #0f163c">
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="mb-3 p-3">Kode Barang</td>
-                <td class="mb-3 p-3">{{ $sarpras->kode_sarpras }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Nama</td>
-                <td class="mb-3 p-3">{{ $sarpras->nama_sarpras }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Foto</td>
-                <td class="mb-3 p-3">
-                    <img src="{{ asset($sarpras->foto) }}" alt="" width="100" height="100">
-                </td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Stok</td>
-                <td class="mb-3 p-3">{{ $sarpras->stok }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Penerima Barang</td>
-                <td class="mb-3 p-3">{{ $sarpras->penerima_barang }}</td>
-            </tr>
-            <tr>
-                <td class="mb-3 p-3">Status</td>
-                <td class="mb-3 p-3">
-                    @if ($sarpras->status == 'tidak')
-                        Tidak Aktif
-                    @elseif ($sarpras->status == 'aktif')
-                        Aktif
-                    @endif
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-@endsection --}}

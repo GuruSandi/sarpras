@@ -35,16 +35,19 @@
         
                     </div>
                 </div>
-                <table class="table table-bordered" id="example">
+                <table class="table table-bordered" id="example" style="font-size: 9px">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Barang</th>
-                            <th>Nama</th>
+                            <th>Kode Prasarana</th>
+                            <th>Nama Prasarana</th>
                             <th>Foto</th>
-                            <th>Stok</th>
-                            <th>Penerima Barang</th>
-                            <th>Status</th>
+                            <th>Jenis Prasarana</th>
+                            <th>Kondisi Bangunan</th>
+                            <th>Tahun Pembangunan</th>
+                            <th>Sumber Dana</th>
+                            <th>Luas Bangunan</th>
+                            <th>Status Kepemilikan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -57,15 +60,19 @@
                                 <td>
                                     <img src="{{ asset($item->foto) }}" alt="" width="100" height="100">
                                 </td>
-                                <td>{{ $item->stok }}</td>
-                                <td>{{ $item->penerima_barang }}</td>
-                                <td>
+                                <td>{{ $item->jenis_prasarana }}</td>
+                                <td>{{ $item->kondisi_barang }}</td>
+                                <td>{{ $item->tahun_pembangunan }}</td>
+                                <td>{{ $item->sumber_dana }}</td>
+                                <td>{{ $item->luas_bangunan }}</td>
+                                <td>{{ $item->status_kepemilikan }}</td>
+                                {{-- <td>
                                     @if ($item->status == 'tidak')
                                         Tidak Aktif
                                     @elseif ($item->status == 'aktif')
                                         Aktif
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-info mx-1" data-bs-toggle="modal"

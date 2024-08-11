@@ -232,14 +232,12 @@
                 labels: [
                     'Sarana',
                     'Prasarana',
-                    'Barang Habis Pakai'
                 ],
                 datasets: [{
                     label: 'Jumlah',
                     data: [
                         {{ $jumlah_sarana }},
                         {{ $jumlah_prasarana }},
-                        {{ $jumlah_baranghabis }},
                     ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.5)', // Warna untuk Sarana

@@ -37,11 +37,12 @@ class MenuController extends Controller
             ->where('status', 'kembali')
             ->groupBy('tanggal')
             ->get();
-
+        //->whereDate('tanggal_pinjam', today()) ini kalau di minta satu hari saja
         // Mengambil jumlah barang yang keluar per hari
         $barangKeluarPerHari = barang_keluar::selectRaw('DATE(created_at) as tanggal, COUNT(*) as jumlah_barang_keluar')
             ->groupBy('tanggal')
             ->get();
+            // dd($barangKeluarPerHari);
         $jumlah_sarana = sarpras::where('jenis_sarpras', 'sarana')->count();
         $jumlah_baranghabis = sarpras::where('jenis_sarpras', 'baranghabis')->count();
         $jumlah_prasarana = sarpras::where('jenis_sarpras', 'prasarana')->count();
