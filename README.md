@@ -64,3 +64,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+untuk gambar di unduhan pdf atau excel yang tidak terbaca maka tambahkan di php.ini yang ada di buka xampp klik config dibagian apache klik php.ini kemudian ctrl+f cari ;extension=gd hapus tanda ; jadi extension=gd kemudian simpan
