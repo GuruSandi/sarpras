@@ -28,12 +28,10 @@ return new class extends Migration
             $table->enum('jenis_prasarana',['gedung','laboratorium','perpustakaan','saranaolahraga'])->nullable();
             $table->decimal('luas_bangunan', 10, 2)->nullable();
             $table->text('tahun_pembangunan')->nullable();
-            $table->text('status_kepemilikan')->nullable();
             $table->text('sumber_dana')->nullable();
             $table->integer('jumlah')->nullable();
             $table->integer('jumlahruang')->nullable();
             $table->integer('jumlah_ruang_kelas')->nullable();
-            $table->text('kapasitas_ruang')->nullable();
             $table->text('fasilitas')->nullable();
             $table->text('fasilitasruang')->nullable();
             $table->text('sanitasi')->nullable();

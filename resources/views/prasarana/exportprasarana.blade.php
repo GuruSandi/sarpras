@@ -63,9 +63,8 @@
                 @if ($prasarana->isNotEmpty())
                     @if ($prasarana->first()->jenis_prasarana == 'gedung')
                         <th>Jumlah Lantai</th>
-                        <th>Jumlah Ruang Kelas</th>
-                        <th>Kapasitas Ruang</th>
-                        <th>Fasilitas Listrik</th>
+                        <th>Jumlah Ruang</th>
+                        <th>Kapasitas Listrik</th>
                         <th>Sanitasi</th>
                     @elseif($prasarana->first()->jenis_prasarana == 'laboratorium')
                         <th>Jenis Laboratorium</th>
@@ -89,7 +88,6 @@
                 <th>Tahun Pembangunan</th>
                 <th>Sumber Dana</th>
                 <th>Luas Bangunan</th>
-                <th>Status Kepemilikan</th>
             </tr>
         </thead>
         <tbody>
@@ -118,8 +116,7 @@
                     @if ($item->jenis_prasarana == 'gedung')
                         <td>{{ $item->jumlahruang ?? 'N/A' }}</td>
                         <td>{{ $item->jumlah_ruang_kelas ?? 'N/A' }}</td>
-                        <td>{{ $item->kapasitas_ruang ?? 'N/A' }}</td>
-                        <td>{{ $item->fasilitas_listrik ?? 'N/A' }}</td>
+                        <td>{{ $item->fasilitasruang ?? 'N/A' }}</td>
                         <td>{{ $item->sanitasi ?? 'N/A' }}</td>
                     @elseif($item->jenis_prasarana == 'laboratorium')
                         <td>{{ $item->jenis_laboratorium ?? 'N/A' }}</td>
@@ -150,7 +147,6 @@
                     <td>{{ $item->tahun_pembangunan }}</td>
                     <td>{{ $item->sumber_dana }}</td>
                     <td>{{ $item->luas_bangunan }} m²</td>
-                    <td>{{ $item->status_kepemilikan }}</td>
 
                 </tr>
             @endforeach

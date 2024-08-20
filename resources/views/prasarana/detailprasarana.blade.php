@@ -39,22 +39,19 @@
 
                 @if ($item->jenis_prasarana == 'gedung')
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <h6>Jumlah Lantai:</h6>
                             <p>{{ $item->jumlahruang }}</p>
                         </div>
-                        <div class="col-4">
-                            <h6>Jumlah Ruang Kelas:</h6>
+                        <div class="col-6">
+                            <h6>Jumlah Ruang:</h6>
                             <p>{{ $item->jumlah_ruang_kelas }}</p>
                         </div>
-                        <div class="col-4">
-                            <h6>Kapasitas Ruang:</h6>
-                            <p>{{ $item->kapasitas_ruang }}</p>
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <h6>Fasilitas Listrik:</h6>
+                            <h6>Kapasitas Listrik:</h6>
                             <p>{{ $item->fasilitasruang }}</p>
                         </div>
                         <div class="col-6">
@@ -132,23 +129,20 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <h6>Tahun Pembangunan:</h6>
                         <p>{{ $item->tahun_pembangunan }}</p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <h6>Sumber Dana:</h6>
                         <p>{{ $item->sumber_dana }}</p>
                     </div>
-                    <div class="col-4">
-                        <h6>Luas Bangunan:</h6>
-                        <p>{{ $item->luas_bangunan }} m²</p>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <h6>Status Kepemilikan:</h6>
-                        <p>{{ $item->status_kepemilikan }}</p>
+                        <h6>Luas Bangunan:</h6>
+                        <p>{{ $item->luas_bangunan }} m²</p>
                     </div>
                     <div class="col-6">
                         <h6>Foto:</h6>

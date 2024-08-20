@@ -32,24 +32,21 @@
 
                     <div class="form-group" id="atribut-gedung" style="display: none;">
                         <div class="row mt-1">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="jumlah">Jumlah Lantai</label>
                                 <input type="number" name="jumlahruang" class="form-control">
                                 
                             </div>
-                            <div class="col-4">
-                                <label for="jumlah_ruang_kelas">Jumlah Ruang Kelas</label>
+                            <div class="col-6">
+                                <label for="jumlah_ruang_kelas">Jumlah Ruang</label>
                                 <input type="number" name="jumlah_ruang_kelas" class="form-control">
                             </div>
-                            <div class="col-4">
-                                <label for="kapasitas_ruang">Kapasitas Ruang</label>
-                                <input type="text" name="kapasitas_ruang" class="form-control">
-                            </div>
+                            
                         </div>
                         <div class="row mt-1">
                             <div class="col-6">
-                                <label for="fasilitasruang">Fasilitas Listrik</label>
-                                <input type="text" name="fasilitasruang" class="form-control">
+                                <label for="fasilitasruang">Kapasitas Listrik</label>
+                                <input type="number" name="fasilitasruang" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label for="sanitasi">Sanitasi</label>
@@ -129,8 +126,6 @@
                         <div class="col-6">
                             <label for="luas_bangunan" class="form-label">Luas Bangunan</label>
                             <input type="number" class="form-control" required name="luas_bangunan">
-                            <label for="status_kepemilikan" class="form-label">Status Kepemilikan</label>
-                            <input type="text" class="form-control" required name="status_kepemilikan">
                             <input type="hidden" class="form-control" required name="jenis_sarpras" value="prasarana">
                             <label for="foto" class="form-label">Foto</label>
                             <input type="file" accept="image/*" class="form-control" required name="foto"
